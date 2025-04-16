@@ -106,3 +106,7 @@ Pentru utilizarea aplicației client:
     - cd backend
     - npm install
     - npm run server
+4. Pentru a adăuga cheia de la google maps:
+    - cd frontend
+    - New-Item .env
+    - Adauga in fisierul .env tocmai creat continutul: VITE_GOOGLE_MAPS_API_KEY=AIzaSyDHh6WPnSbtyjFjagTSvZYQ1qHJLrvCP28 
