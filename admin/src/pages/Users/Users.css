@@ -1,0 +1,237 @@
+.admin-users {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.users-header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.search-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 250px;
+  font-size: 14px;
+}
+
+.refresh-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.refresh-button:hover {
+  background-color: #388E3C;
+}
+
+.refresh-button:disabled {
+  background-color: #9E9E9E;
+  cursor: not-allowed;
+}
+
+.users-table-container {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.users-table th, 
+.users-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.users-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.users-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.admin-status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.is-admin {
+  background-color: #D1E7DD;
+  color: #0A3622;
+}
+
+.not-admin {
+  background-color: #F8D7DA;
+  color: #58151C;
+}
+
+.promo-code-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+}
+
+.no-codes {
+  color: #999;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.users-loading,
+.users-error,
+.no-users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: #666;
+  background: white;
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.users-error {
+  color: #D32F2F;
+}
+
+.retry-button {
+  margin-top: 15px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.retry-button:hover {
+  background-color: #1976D2;
+}
+
+/* Stiluri pentru butoanele de ștergere */
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.action-disabled {
+  color: #999;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.delete-confirmation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.delete-confirmation span {
+  color: #d32f2f;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.confirmation-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.confirm-yes, .confirm-no {
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.confirm-yes {
+  background-color: #f44336;
+  color: white;
+}
+
+.confirm-yes:hover {
+  background-color: #d32f2f;
+}
+
+.confirm-no {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.confirm-no:hover {
+  background-color: #bdbdbd;
+}
+
+.confirm-yes:disabled, .confirm-no:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .users-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .search-controls {
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  .search-input {
+    flex: 1;
+  }
+} 

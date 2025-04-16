@@ -1,0 +1,120 @@
+.app-download{
+    margin: auto auto;
+    margin-top: 100px;
+    font-size: max(3vw,20px);
+    text-align: center;
+    font-weight: 500;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #ff4e00 0%, #ff9e64 100%);
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 8px 30px rgba(255, 78, 0, 0.2);
+}
+
+.app-download p {
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-download-platforms{
+    display: flex;
+    justify-content: center;
+    gap: max(2vw,10px);
+    margin-top: 40px;
+}
+
+.app-download-platforms img{
+    width: max(30vw,120px);
+    max-width: 180px;
+    transition: 0.5s;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.app-download-platforms img:hover{
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.3));
+}
+
+/* QR Modal */
+.qr-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.qr-modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.4s ease;
+}
+
+.qr-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.qr-modal-content h3 {
+    color: #ff4e00;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.qr-code-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border: 1px solid #eee;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.qr-modal-content p {
+    color: #666;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .app-download {
+        margin-top: 60px;
+        padding: 30px 15px;
+    }
+    
+    .qr-modal-content {
+        padding: 20px;
+        max-width: 300px;
+    }
+    
+    .qr-code-image {
+        width: 160px;
+        height: 160px;
+    }
+}

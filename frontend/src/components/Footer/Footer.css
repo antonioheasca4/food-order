@@ -1,0 +1,517 @@
+.footer{
+    color: #d9d9d9;
+    background-color: #323232;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 8vw;
+    padding-top: 80px;
+    margin-top: 100px;
+}
+
+.footer-content{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 80px;
+}
+
+.footer-content-left,.footer-content-right,.footer-content-center {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+
+.footer-content-left li,.footer-content-right li,.footer-content-center li {
+    list-style: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.footer-content-right h2,.footer-content-center h2 {
+    color: whitesmoke;
+}
+
+.footer-social-icons img{
+    width: 40px;
+    margin-right: 15px;
+}
+
+.footer hr{
+    width: 100%;
+    height: 2px;
+    margin: 20px 0;
+    background-color: grey;
+    border: none;
+}
+
+/* Stiluri pentru harta Google Maps */
+.footer-map-container {
+    width: 100%;
+    margin: 40px 0;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-map-container h2 {
+    color: whitesmoke;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.google-map {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.google-map iframe {
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.map-marker-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.map-marker {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -100%);
+    z-index: 5;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translate(-50%, -100%);
+    }
+    50% {
+        transform: translate(-50%, -110%);
+    }
+}
+
+.map-marker svg {
+    filter: drop-shadow(0 3px 5px rgba(0,0,0,0.3));
+}
+
+.pin-info {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 0 auto 20px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pin-info p {
+    color: #FF0000;
+    font-weight: bold;
+    margin: 0;
+    font-size: 16px;
+}
+
+.location-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.location-address, .location-hours {
+    width: 48%;
+    min-width: 250px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.location-info h3 {
+    color: #ff4e00;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.location-info p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+@media (max-width:750px){
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+    .footer-copyright{
+        text-align: center;
+    }
+    
+    .location-info {
+        flex-direction: column;
+    }
+    
+    .location-address, .location-hours {
+        width: 100%;
+    }
+}
+
+/* Animații */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.footer-social-icons img:hover {
+    animation: pulse 1s infinite;
+}
+
+.footer-content-left li:hover, 
+.footer-content-right li:hover,
+.footer-content-center li:hover {
+    color: #ff4e00;
+    transform: translateX(5px);
+    transition: all 0.3s ease;
+}
+
+/* Stiluri pentru newsletter */
+.footer-newsletter {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0 40px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.footer-newsletter h2 {
+    color: whitesmoke;
+    margin-bottom: 15px;
+}
+
+.footer-newsletter p {
+    color: #bbb;
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-newsletter p strong {
+    color: #ff4e00;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px 0 0 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.newsletter-form button {
+    padding: 0 25px;
+    background-color: #ff4e00;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.newsletter-form button:hover {
+    background-color: #e54600;
+}
+
+/* Stiluri pentru cod promoțional */
+.promo-code-container {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    animation: fadeInUp 0.6s ease;
+}
+
+.promo-code-container h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.promo-code {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px dashed #ff4e00;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.promo-code span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff4e00;
+    letter-spacing: 2px;
+    margin-right: 15px;
+    font-family: monospace;
+}
+
+.copy-button {
+    background-color: #ff4e00;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: #e54600;
+    transform: scale(1.05);
+}
+
+.promo-code-info {
+    color: #aaa;
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+/* Cod promoțional pulsând pentru evidențiere */
+@keyframes pulse-border {
+    0% { border-color: rgba(255, 78, 0, 0.7); }
+    50% { border-color: rgba(255, 78, 0, 1); }
+    100% { border-color: rgba(255, 78, 0, 0.7); }
+}
+
+.promo-code {
+    animation: pulse-border 2s infinite;
+}
+
+.subscribe-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    animation: fadeInUp 0.5s;
+}
+
+.subscribe-message.success {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+.subscribe-message.error {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #F44336;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 750px) {
+    .newsletter-form {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .newsletter-form input {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .newsletter-form button {
+        width: 100%;
+        border-radius: 5px;
+        padding: 12px;
+    }
+    
+    .promo-code {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .promo-code span {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .copy-button {
+        width: 100%;
+    }
+}
+
+.footer-subscribe button.generating {
+    background-color: #ccc;
+    cursor: wait;
+}
+
+.used-promo-info {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #fff3e0;
+    border-radius: 5px;
+    border-left: 3px solid #ff9800;
+    font-size: 14px;
+    color: #ff9800;
+    animation: fadeInUp 0.5s;
+}
+
+.promo-login-message {
+    background-color: rgba(30, 144, 255, 0.1);
+    border-left: 3px solid #1E90FF;
+    color: #1E90FF;
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.promo-generate-section {
+    margin-top: 15px;
+}
+
+.promo-generate-section p {
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
+.promo-generate-section strong {
+    color: #fff;
+    font-weight: bold;
+}
+
+.promo-generate-section button {
+    background-color: #ff4e00;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.promo-generate-section button:hover {
+    background-color: #e54600;
+}
+
+.promo-generate-section button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Stiluri pentru popup */
+.footer-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.footer-popup {
+    background-color: #fff;
+    color: #333;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    animation: popIn 0.4s cubic-bezier(0.26, 0.53, 0.74, 1.48);
+}
+
+.footer-popup p {
+    font-size: 16px;
+    text-align: center;
+    margin: 15px 0;
+    color: #333;
+}
+
+.footer-popup-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s ease;
+}
+
+.footer-popup-close:hover {
+    color: #ff4e00;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 480px) {
+    .footer-popup {
+        padding: 15px 20px;
+        max-width: 300px;
+    }
+    
+    .footer-popup p {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,396 @@
+.orders-page {
+  margin: 100px auto;
+  max-width: 1000px;
+  padding: 0 20px;
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.orders-page h1 {
+  font-size: 28px;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.orders-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-controls label {
+  font-size: 14px;
+  color: #555;
+}
+
+.status-filter {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  background-color: white;
+}
+
+.refresh-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  min-width: 140px;
+}
+
+.refresh-button:hover {
+  background-color: #45a049;
+}
+
+.refresh-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.no-filtered-orders {
+  text-align: center;
+  padding: 40px 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  color: #666;
+}
+
+.no-filtered-orders p {
+  font-size: 16px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.order-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-number {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.order-status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-pending {
+  background-color: #fff8e1;
+  color: #f57c00;
+}
+
+.status-processing {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-shipped {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.status-delivered {
+  background-color: #e8f5e9;
+  color: #388e3c;
+  font-weight: 600;
+}
+
+.status-cancelled {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.order-date {
+  font-size: 14px;
+  color: #757575;
+  margin-bottom: 20px;
+}
+
+.order-items-list {
+  margin-bottom: 20px;
+}
+
+.order-product {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed #f0f0f0;
+}
+
+.order-product:last-child {
+  border-bottom: none;
+}
+
+.order-product-quantity {
+  min-width: 35px;
+  font-weight: 500;
+}
+
+.order-product-name {
+  flex-grow: 1;
+}
+
+.order-product-price {
+  font-weight: 500;
+  color: #333;
+}
+
+.order-totals {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.order-subtotal,
+.order-delivery,
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.order-total {
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 16px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 10px;
+}
+
+.order-address {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.order-address h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.order-address p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.orders-loading {
+  text-align: center;
+  margin: 150px 0;
+  font-size: 18px;
+  color: #555;
+}
+
+.orders-not-logged-in,
+.orders-empty {
+  text-align: center;
+  margin: 150px auto;
+  max-width: 600px;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.orders-not-logged-in h2,
+.orders-empty h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.orders-not-logged-in p,
+.orders-empty p {
+  color: #666;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .orders-page {
+    margin: 80px auto;
+  }
+  
+  .orders-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .orders-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .filter-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .status-filter {
+    width: 100%;
+  }
+  
+  .refresh-button {
+    width: 100%;
+  }
+  
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .order-status {
+    align-self: flex-start;
+  }
+}
+
+/* Stiluri îmbunătățite pentru pagina fără comenzi */
+.no-orders {
+  text-align: center;
+  padding: 60px 30px;
+  margin: 80px auto;
+  max-width: 600px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+  transition: transform 0.3s ease;
+  animation: fadeIn 0.8s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.no-orders:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.empty-orders-image {
+  width: 180px;
+  height: auto;
+  margin-bottom: 25px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.no-orders h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.no-orders p {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-orders button {
+  background-color: #FF6B6B;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.button-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-size: 18px;
+  margin-left: 3px;
+}
+
+.no-orders button:hover {
+  background-color: #FF5252;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 107, 107, 0.4);
+}
+
+.no-orders button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+.no-orders button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(255, 107, 107, 0.3);
+}
+
+/* Animație pentru fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

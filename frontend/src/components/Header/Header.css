@@ -1,0 +1,104 @@
+.header{
+    height: min(34vw, 600px);
+    margin: 30px auto;
+    background: url('/header_img.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+    z-index: 1;
+}
+
+.header-contents{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: clamp(15px, 1.5vw, 30px);
+    max-width: 55%;
+    bottom: 15%;
+    left: clamp(20px, 6vw, 80px);
+    animation: fadeIn 3s;
+    z-index: 2;
+}
+
+.header-contents h2{
+    font-weight: 600;
+    color: white;
+    font-size: clamp(24px, 3.5vw, 48px);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.2;
+    margin: 0;
+}
+
+.header-contents p{
+    color: white;
+    font-size: clamp(14px, 1.2vw, 20px);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    max-width: 90%;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.header-contents button{
+    border: none;
+    color: #333;
+    font-weight: 600;
+    padding: clamp(10px, 1vw, 20px) clamp(20px, 2.5vw, 40px);
+    background-color: white;
+    font-size: clamp(14px, 1vw, 18px);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin-top: clamp(10px, 1vw, 20px);
+}
+
+.header-contents button:hover {
+    background-color: #ff4e00;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+@media (max-width:1050px){
+    .header-contents{
+        max-width: 70%;
+    }
+}
+
+@media (max-width:750px){
+    .header {
+        height: min(50vw, 400px);
+    }
+    
+    .header-contents {
+        max-width: 85%;
+        bottom: 10%;
+    }
+    
+    .header-contents h2 {
+        font-size: clamp(20px, 4vw, 32px);
+    }
+    
+    .header-contents p {
+        font-size: clamp(12px, 2vw, 16px);
+        max-width: 95%;
+    }
+    
+    .header-contents button {
+        padding: clamp(8px, 2vw, 15px) clamp(16px, 4vw, 30px);
+        font-size: clamp(12px, 2vw, 16px);
+    }
+}

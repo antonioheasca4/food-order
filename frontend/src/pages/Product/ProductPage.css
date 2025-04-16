@@ -1,0 +1,176 @@
+.product-page-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.product-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.product-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-image img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.product-details {
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff4e00;
+  margin: 10px 0;
+}
+
+.base-price {
+  font-size: 16px;
+  color: #666;
+  font-weight: normal;
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
+.product-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.product-category {
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #666;
+}
+
+.add-to-cart-button {
+  background-color: #ff4e00;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.add-to-cart-button:hover {
+  background-color: #e54600;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 50px;
+  font-size: 18px;
+}
+
+.error {
+  color: #ff4e00;
+}
+
+/* Stiluri pentru opțiunile produsului */
+.product-options {
+  margin: 25px 0;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.product-options h3 {
+  margin-top: 0;
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.option-group {
+  margin-bottom: 20px;
+}
+
+.option-group h4 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #444;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+}
+
+.option-item label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option-item input {
+  margin-right: 8px;
+}
+
+.product-reviews {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.required-option {
+  color: #ff4e00;
+  margin-left: 5px;
+}
+
+.option-group-error h4 {
+  color: #d8000c;
+}
+
+.option-error-message {
+  color: #d8000c;
+  font-size: 14px;
+  margin: 5px 0 10px;
+  padding: 5px 10px;
+  background-color: #ffe6e6;
+  border-radius: 4px;
+  border-left: 3px solid #d8000c;
+}
+
+.product-validation-error {
+  color: #d8000c;
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #ffe6e6;
+  border-radius: 5px;
+  border: 1px solid #ffcccc;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .product-page {
+    flex-direction: column;
+  }
+  
+  .product-image, .product-details {
+    width: 100%;
+  }
+}

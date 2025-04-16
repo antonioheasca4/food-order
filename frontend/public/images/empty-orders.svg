@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundal pentru imagine -->
+  <rect width="200" height="200" rx="100" fill="#FFF9F9" opacity="0.2"/>
+  
+  <!-- Cutie pentru comandă -->
+  <rect x="40" y="70" width="120" height="90" rx="10" fill="#FFE0E0"/>
+  <rect x="40" y="70" width="120" height="90" rx="10" stroke="#FF6B6B" stroke-width="2"/>
+  
+  <!-- Capac cutie -->
+  <path d="M35 70C35 64.4772 39.4772 60 45 60H155C160.523 60 165 64.4772 165 70V70H35V70Z" fill="#FF9E9E"/>
+  <path d="M35 70C35 64.4772 39.4772 60 45 60H155C160.523 60 165 64.4772 165 70V70H35V70Z" stroke="#FF6B6B" stroke-width="2"/>
+  
+  <!-- Logo restaurant pe cutie -->
+  <circle cx="100" cy="115" r="20" fill="#FFFFFF"/>
+  <path d="M90 110L100 120L110 110" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Simbol pentru lipsa comenzilor -->
+  <circle cx="160" cy="50" r="20" fill="#FF6B6B" opacity="0.2"/>
+  <line x1="150" y1="50" x2="170" y2="50" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Farfurie -->
+  <ellipse cx="60" cy="40" rx="20" ry="7" fill="#E6E6E6"/>
+  <ellipse cx="60" cy="40" rx="15" ry="5" fill="#F5F5F5"/>
+  
+  <!-- Tacâmuri -->
+  <line x1="120" y1="30" x2="120" y2="50" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
+  <path d="M115 30C115 30 113 35 115 40C117 45 115 50 115 50" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
+  <path d="M125 30C125 30 127 35 125 40C123 45 125 50 125 50" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Text "Gol" -->
+  <text x="100" y="140" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#FF6B6B">Gol</text>
+</svg> 

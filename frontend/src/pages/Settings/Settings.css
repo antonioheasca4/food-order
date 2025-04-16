@@ -1,0 +1,239 @@
+.settings-page {
+  margin: 100px auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.settings-page h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+  font-size: 2rem;
+}
+
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.settings-section {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.settings-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #444;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* Stiluri pentru secțiunea de profil */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-item .label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.info-item .value {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.name-display {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.edit-button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-button:hover {
+  background-color: #e0e0e0;
+}
+
+.edit-name-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.name-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.save-button, 
+.cancel-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: #3f9142;
+}
+
+.cancel-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.cancel-button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.save-button:disabled,
+.cancel-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Stiluri pentru formularul de parolă */
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.password-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.change-password-button, 
+.reset-form-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.change-password-button {
+  background-color: #2196F3;
+  color: white;
+  flex: 1;
+}
+
+.change-password-button:hover:not(:disabled) {
+  background-color: #1976D2;
+}
+
+.reset-form-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.reset-form-button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.change-password-button:disabled,
+.reset-form-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Stil pentru starea de încărcare */
+.settings-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Media Queries pentru Responsive */
+@media (max-width: 768px) {
+  .settings-page {
+    margin: 80px auto;
+  }
+  
+  .settings-section {
+    padding: 20px;
+  }
+  
+  .password-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .change-password-button, 
+  .reset-form-button {
+    width: 100%;
+  }
+}
+
+.settings-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  font-size: 1.2rem;
+  color: #e74c3c;
+  text-align: center;
+  padding: 0 20px;
+} 

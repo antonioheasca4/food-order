@@ -1,0 +1,126 @@
+.add {
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.add-form {
+  width: 700px;
+  min-height: 400px;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.3);
+}
+
+.add-form > p {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus, 
+.form-group select:focus {
+  border-color: #2a6fdb;
+  box-shadow: 0px 0px 2px 0px #2a6fdb;
+}
+
+button {
+  background: #2a6fdb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #1655b5;
+}
+
+button:disabled {
+  background: #879ebd;
+  cursor: not-allowed;
+}
+
+.image-preview-container {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-preview {
+  max-height: 200px;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Stiluri pentru secțiunea de opțiuni */
+.options-info {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.options-summary {
+  margin-top: 10px;
+}
+
+.option-group {
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 5px;
+  border-left: 3px solid #2a6fdb;
+}
+
+.options-note {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}

@@ -1,0 +1,73 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 4%;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo {
+  height: 62px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .profile {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f0f0f0;
+}
+
+.logout-btn {
+  background-color: #ff4e00;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #e04600;
+}
+
+/* Media queries pentru responsive */
+@media (max-width: 768px) {
+  .navbar .logo {
+    height: 48px;
+    max-width: 150px;
+  }
+  
+  .navbar .profile {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .logout-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}

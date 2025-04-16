@@ -1,0 +1,351 @@
+.admin-orders {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.admin-orders h1 {
+  color: #333;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-controls label {
+  margin-right: 5px;
+  font-weight: 500;
+}
+
+.status-filter {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 14px;
+}
+
+.refresh-button {
+  padding: 8px 16px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.refresh-button:hover {
+  background-color: #4cae4c;
+}
+
+.refresh-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Stilizare pentru lista de comenzi */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.order-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.order-item.expanded {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.order-header {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 2fr 1fr 1fr auto;
+  padding: 15px;
+  align-items: center;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: background-color 0.2s ease;
+}
+
+.order-header:hover {
+  background-color: #f5f5f5;
+}
+
+.order-header > div {
+  padding: 0 10px;
+}
+
+.order-header span {
+  font-weight: 600;
+  color: #777;
+  margin-right: 5px;
+}
+
+/* Stilizare pentru statusuri */
+.order-status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.status-pending {
+  background-color: #f0ad4e;
+}
+
+.status-processing {
+  background-color: #5bc0de;
+}
+
+.status-shipped {
+  background-color: #5cb85c;
+}
+
+.status-delivered {
+  background-color: #2ecc71;
+}
+
+.status-cancelled {
+  background-color: #d9534f;
+}
+
+.expand-icon {
+  font-size: 18px;
+  color: #777;
+}
+
+/* Stilizare pentru detaliile comenzii */
+.order-details {
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.order-section {
+  margin-bottom: 30px;
+}
+
+.order-section h3 {
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.delivery-info .info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.delivery-info p {
+  margin-bottom: 8px;
+}
+
+/* Stilizare pentru tabel produse */
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.items-table th {
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+.items-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.items-table tfoot td {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.totals-label {
+  text-align: right;
+}
+
+.grand-total {
+  font-size: 18px;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+.product-info p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.options-details {
+  display: block;
+  color: #777;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Stilizare pentru butoanele de status */
+.status-management {
+  margin-top: 20px;
+}
+
+.status-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.status-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.status-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.status-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.status-btn.active {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5) inset;
+  transform: scale(1.05);
+}
+
+.status-btn.pending {
+  background-color: #f0ad4e;
+}
+
+.status-btn.processing {
+  background-color: #5bc0de;
+}
+
+.status-btn.shipped {
+  background-color: #5cb85c;
+}
+
+.status-btn.delivered {
+  background-color: #2ecc71;
+}
+
+.status-btn.cancelled {
+  background-color: #d9534f;
+}
+
+/* Stiluri pentru stări de încărcare și goale */
+.orders-loading,
+.no-orders,
+.no-filtered-orders {
+  text-align: center;
+  padding: 40px;
+  color: #777;
+  font-size: 18px;
+}
+
+/* Stilizare pentru mesajul de eroare */
+.orders-error {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff3f3;
+  border: 1px solid #f5d0d0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.orders-error p {
+  margin-bottom: 15px;
+  color: #d63031;
+}
+
+.orders-error p:first-child {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.retry-button {
+  background-color: #ff4e00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+  background-color: #e44600;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .orders-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-controls {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .order-header {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+  }
+  
+  .order-customer {
+    grid-column: 1 / -1;
+  }
+  
+  .delivery-info .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .order-header {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  
+  .status-filter, 
+  .refresh-button {
+    width: 100%;
+    margin-top: 5px;
+  }
+}

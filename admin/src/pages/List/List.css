@@ -1,0 +1,89 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.list p {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.food-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.food-list-table th {
+  background-color: #ff4e00;
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 500;
+}
+
+.food-list-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.food-list-table tr:last-child td {
+  border-bottom: none;
+}
+
+.food-list-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.food-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.remove-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: #ff4e00;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 1;
+  border: none;
+}
+
+.remove-button:hover {
+  background-color: #e04600;
+  transform: scale(1.05);
+}
+
+.loading, .no-items {
+  text-align: center;
+  padding: 50px 0;
+  font-size: 18px;
+  color: #666;
+}
+
+.no-items {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-top: 20px;
+}
+
