@@ -6,19 +6,19 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Obține calea curentă
+// Obtinem calea curenta
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Mapare între numele produselor militare și imaginile originale
+// Mapare intre numele produselor militare si imaginile originale
 const originalImageMapping = {
-  // Salate - Gamelă Verde
+  // Salate - Gamela Verde  
   "Salata de Cazarmă": "food_1.png",
   "Verdeața Locotenentului": "food_2.png",
   "Camuflaj de Legume": "food_3.png",
   "Ordin de Pui": "food_4.png",
   
-  // Rolls - Hrană de Rezervă
+  // Rolls - Hrana de Rezerva
   "Cartuș Umplut": "food_5.png", 
   "Muniție Picantă": "food_6.png",
   "Grenadă cu Pui": "food_7.png",
@@ -122,5 +122,4 @@ async function restoreOriginalImages() {
   }
 }
 
-// Rulează scriptul
 restoreOriginalImages(); 

@@ -1,3 +1,5 @@
+// Controller pentru useri
+
 import userModel, { DeletedEmail } from "../models/userModel.js";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
@@ -38,19 +40,19 @@ const createToken = (id) => {
 const registerUser = async(req,res) => {
     const {name,password,email} = req.body;
     try {
-        // checking if user already exists
+        // Verifica daca userul exista
         const exists = await userModel.findOne({email})
         if(exists){
             return res.json({succes:false,message:"Utilizatorul deja există!"})
         }
 
-        // Verificăm dacă emailul a aparținut unui cont șters anterior
+        // Verifica daca email-ul a fost sters anterior
         const isDeletedEmail = await DeletedEmail.findOne({ email });
         if (isDeletedEmail) {
             return res.json({succes:false,message:"Acest email a aparținut unui cont șters și nu poate fi folosit din nou."})
         }
 
-        // validating email format & strong password
+        // Verifica daca email-ul este valid si parola este puternica
         if(!validator.isEmail(email))
         {
             return res.json({succes:false,message:"Te rog introdu un email valid!"})
@@ -61,7 +63,7 @@ const registerUser = async(req,res) => {
             return res.json({succes:false,message:"Parola trebuie să conțină cel puțin 8 caractere!"})
         }
 
-        // hashing user password
+        // hash pe parola userului
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password,salt)
 
@@ -82,7 +84,7 @@ const registerUser = async(req,res) => {
     }
 }
 
-// Obține informațiile utilizatorului autentificat
+// Ia informatiile userului autentificat
 const getUserInfo = async (req, res) => {
     try {
         const user = await userModel.findById(req.userId);
@@ -91,7 +93,7 @@ const getUserInfo = async (req, res) => {
             return res.status(404).json({ success: false, message: 'Utilizatorul nu a fost găsit' });
         }
         
-        // Returnăm doar datele necesare, fără parola
+        // Returneaza doar datele necesare, fara parola
         res.json({
             success: true,
             user: {
@@ -108,24 +110,24 @@ const getUserInfo = async (req, res) => {
     }
 };
 
-// Funcție pentru crearea utilizatorului admin
+// Creaza userul admin
 const createAdminUser = async (req, res) => {
     try {
-        // Verifică dacă există deja un utilizator admin
+        // Verifica daca exista deja un user admin
         const adminExists = await userModel.findOne({ email: "admin@popotaatm.com" });
         
         if (adminExists) {
-            // Doar actualizăm drepturile de administrator
+            // Doar actualizam drepturile de administrator
             adminExists.isAdmin = true;
             await adminExists.save();
             return res.json({ succes: true, message: "Utilizatorul admin există deja. Drepturi de administrator actualizate!" });
         }
         
-        // Creăm parola hash
+        // Creaza parola hash
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash("admin123", salt);
         
-        // Creăm utilizatorul admin
+        // Creaza userul admin
         const adminUser = new userModel({
             name: "Administrator",
             email: "admin@popotaatm.com",
@@ -144,7 +146,7 @@ const createAdminUser = async (req, res) => {
     }
 };
 
-// Funcție pentru obținerea tuturor utilizatorilor (doar pentru admin)
+// Ia toti userii (doar pentru admin)
 const getAllUsers = async (req, res) => {
     try {
         const users = await userModel.find({}, '-password'); // Excludem parola din rezultate
@@ -165,29 +167,29 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-// Funcție pentru ștergerea unui utilizator (doar pentru admin)
+// șterge un user (doar pentru admin)
 const deleteUser = async (req, res) => {
     try {
         const { userId } = req.params;
         
-        // Verificăm dacă utilizatorul există
+        // Verifica daca user-ul exista
         const user = await userModel.findById(userId);
         if (!user) {
             return res.status(404).json({ success: false, message: 'Utilizatorul nu a fost găsit' });
         }
         
-        // Nu permitem ștergerea contului de admin
+        // Nu permitem stergerea contului de admin
         if (user.isAdmin) {
-            return res.status(403).json({ success: false, message: 'Nu se poate șterge un cont de administrator' });
+            return res.status(403).json({ success: false, message: 'Nu se poate sterge un cont de administrator' });
         }
         
-        // Salvăm emailul în lista de emailuri șterse
+        // Salvam email-ul in lista de emailuri sterse
         const deletedEmail = new DeletedEmail({
             email: user.email
         });
         await deletedEmail.save();
         
-        // Ștergem utilizatorul
+        // Stergem utilizatorul
         await userModel.findByIdAndDelete(userId);
         
         res.json({ success: true, message: 'Utilizator șters cu succes' });
@@ -197,40 +199,40 @@ const deleteUser = async (req, res) => {
     }
 };
 
-// Funcție pentru schimbarea parolei utilizatorului
+// Schimba parola userului
 const changePassword = async (req, res) => {
     try {
         const { currentPassword, newPassword } = req.body;
         
-        // Verificăm dacă noua parolă este furnizată
+        // Verifica daca noua parola este furnizata
         if (!newPassword) {
-            return res.status(400).json({ success: false, message: 'Noua parolă este obligatorie' });
+            return res.status(400).json({ success: false, message: 'Noua parola este obligatorie' });
         }
         
-        // Verificăm dacă noua parolă respectă cerințele de securitate
+        // Verifica daca noua parola respecta cerintele de securitate
         if (newPassword.length < 8) {
-            return res.status(400).json({ success: false, message: 'Noua parolă trebuie să conțină cel puțin 8 caractere' });
+            return res.status(400).json({ success: false, message: 'Noua parola trebuie sa contina cel putin 8 caractere' });
         }
         
-        // Găsim utilizatorul după ID (din tokenul JWT)
+        // Gasim utilizatorul dupa ID (din tokenul JWT)
         const user = await userModel.findById(req.userId);
         
         if (!user) {
             return res.status(404).json({ success: false, message: 'Utilizatorul nu a fost găsit' });
         }
         
-        // Verificăm dacă parola actuală este corectă
+        // Verifica daca parola actuala este corecta
         const isMatch = await bcrypt.compare(currentPassword, user.password);
         
         if (!isMatch) {
             return res.status(400).json({ success: false, message: 'Parola actuală este incorectă' });
         }
         
-        // Generăm hash pentru noua parolă
+        // Generam hash pentru noua parola
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(newPassword, salt);
         
-        // Actualizăm parola în baza de date
+        // Actualizam parola in baza de date
         user.password = hashedPassword;
         await user.save();
         
@@ -241,24 +243,24 @@ const changePassword = async (req, res) => {
     }
 };
 
-// Funcție pentru actualizarea numelui utilizatorului
+// Actualizeaza numele userului
 const updateUserName = async (req, res) => {
     try {
         const { name } = req.body;
         
-        // Verificăm dacă numele este furnizat
+        // Verifica daca numele este furnizat
         if (!name || name.trim() === '') {
             return res.status(400).json({ success: false, message: 'Numele este obligatoriu' });
         }
         
-        // Găsim utilizatorul după ID (din tokenul JWT)
+        // Gasim utilizatorul dupa ID (din tokenul JWT)
         const user = await userModel.findById(req.userId);
         
         if (!user) {
             return res.status(404).json({ success: false, message: 'Utilizatorul nu a fost găsit' });
         }
         
-        // Actualizăm numele în baza de date
+        // Actualizam numele in baza de date
         user.name = name;
         await user.save();
         

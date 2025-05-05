@@ -1,3 +1,5 @@
+// Controller pentru cautare
+
 import foodModel from "../models/foodModel.js";
 
 const search = async (req, res) => {

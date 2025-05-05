@@ -34,7 +34,7 @@ const Orders = ({ url }) => {
       console.log('Răspuns de la server:', response.data);
 
       if (response.data.success) {
-        setOrders(response.data.orders);
+        setOrders(response.data.data);
       } else {
         setError("Nu s-au putut încărca comenzile: " + response.data.message);
         toast.error("Nu s-au putut încărca comenzile!");

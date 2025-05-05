@@ -202,7 +202,7 @@ const Footer = () => {
       
       <div className="footer-copyright">
         <hr />
-        <p>Copyright© 2024 Popota ATM | All rights reserved</p>
+        <p>Copyright© 2025 Popota ATM | All rights reserved</p>
       </div>
       
       {showPopup && (

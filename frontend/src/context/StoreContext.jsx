@@ -21,6 +21,8 @@ const StoreContextProvider = (props) => {
     // Verifică dacă utilizatorul a folosit deja un anumit cod promoțional
     const checkUsedPromoCode = async (code) => {
         if (!token) return false;
+        const exists = await checkIfUserExists(token);
+        if (!exists) return false;
         
         try {
             // Obținem istoricul comenzilor utilizatorului
@@ -50,6 +52,8 @@ const StoreContextProvider = (props) => {
     // Funcție pentru a verifica codul promoțional
     const checkPromoCode = async (code) => {
         if (!token || !code) return false;
+        const exists = await checkIfUserExists(token);
+        if (!exists) return false;
         
         try {
             const response = await axios.get(`${url}/api/user/me`, {
@@ -87,24 +91,40 @@ const StoreContextProvider = (props) => {
             showNotification('Te rugăm să introduci un cod promoțional.', 'error');
             return false;
         }
-        
+        if (token) {
+            const exists = await checkIfUserExists(token);
+            if (!exists) return false;
+        }
         // Verificăm dacă codul promoțional este valid
         const isValidCode = await checkPromoCode(code);
         if (!isValidCode) {
             return false;
         }
-        
+        // Verificăm cu backend dacă userul a folosit deja acest cod
+        try {
+            const response = await axios.get(`${url}/api/user/me`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            if (response.data.success && response.data.user) {
+                const userCodes = response.data.user.usedPromoCodes || [];
+                if (userCodes.includes(code)) {
+                    showNotification('Ai folosit deja acest cod promoțional. Poți folosi fiecare cod o singură dată.', 'error');
+                    return false;
+                }
+            }
+        } catch (error) {
+            console.error('Eroare la verificarea codului promoțional:', error);
+            showNotification('A apărut o eroare la verificarea codului promoțional.', 'error');
+            return false;
+        }
         // Calculăm discount-ul de 15%
         const subtotal = getTotalCartAmount();
         const discountAmount = subtotal * 0.15;
-        
         setPromoCode(code);
         setDiscount(discountAmount);
-        
         // Salvăm în localStorage pentru persistență
         localStorage.setItem('promoCode', code);
         localStorage.setItem('discount', discountAmount.toString());
-        
         showNotification('Codul promoțional a fost aplicat cu succes! Ai primit 15% reducere.', 'success');
         return true;
     };
@@ -168,6 +188,10 @@ const StoreContextProvider = (props) => {
     };
 
     const addToCart = async (itemId, options = {}) => {
+        if (token) {
+            const exists = await checkIfUserExists(token);
+            if (!exists) return;
+        }
         const cartItemKey = options && Object.keys(options).length > 0 
             ? `${itemId}_${JSON.stringify(options)}` 
             : itemId;
@@ -247,6 +271,10 @@ const StoreContextProvider = (props) => {
     }
 
     const removeFromCart = async (cartItemKey) => {
+        if (token) {
+            const exists = await checkIfUserExists(token);
+            if (!exists) return;
+        }
         setCartItems((prev) => ({ ...prev, [cartItemKey]: prev[cartItemKey] - 1 }))
         
         // Dacă cantitatea ajunge la 0, șterge și opțiunile asociate
@@ -524,40 +552,49 @@ const StoreContextProvider = (props) => {
         return productOptions[cartItemKey] || {};
     }
 
+    // Funcție pentru a verifica dacă utilizatorul mai există în baza de date
+    const checkIfUserExists = async (token) => {
+        try {
+            const response = await axios.get(`${url}/api/user/me`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            if (!response.data.success || !response.data.user) {
+                throw new Error();
+            }
+            return true;
+        } catch (error) {
+            // Deconectăm utilizatorul și afișăm mesaj
+            setToken("");
+            localStorage.removeItem("token");
+            showNotification("Contul tău a fost șters sau sesiunea a expirat. Te rugăm să contactezi administratorul.", "error");
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+            return false;
+        }
+    };
+
     useEffect(()=> {
         async function loadData(){
-            // Resetăm flag-ul înainte de a încerca să încărcăm datele
             setIsDataLoaded(false);
-            
-            // Încărcăm mai întâi lista de produse
             await fetchFoodList();
-            
-            // Verificăm dacă există un token salvat în localStorage
             if(localStorage.getItem("token")) {
                 setToken(localStorage.getItem("token"));
-                
-                // Încărcăm coșul și opțiunile de pe server
+                // Verificăm dacă userul mai există
+                const exists = await checkIfUserExists(localStorage.getItem("token"));
+                if (!exists) return;
                 await loadCartData(localStorage.getItem("token"));
-                
-                // Încărcăm lista de coduri promoționale utilizate
                 await fetchUsedPromoCodes();
             } else {
-                // Dacă nu există token, verificăm dacă trebuie să ștergem codul promoțional
-                // când coșul este gol și la reload sau când user-ul nu este logat
                 if (Object.keys(cartItems).length === 0 && localStorage.getItem("promoCode")) {
                     removePromoCodeSilent();
                 }
             }
         }
-        
-        // Eliminăm orice promocode existent la încărcarea inițială dacă nu există produse în coș
         if (Object.keys(cartItems).length === 0 && localStorage.getItem("promoCode")) {
             removePromoCodeSilent();
         }
-        
         loadData();
-        
-        // Cleanup pentru timeout-ul de notificare
         return () => {
             if (notificationTimeout) {
                 clearTimeout(notificationTimeout);

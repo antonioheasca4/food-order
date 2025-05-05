@@ -1,3 +1,6 @@
+// Controller pentru produse
+// Exemplu: cauti produse dupa anumite criterii
+
 import foodModel from "../models/foodModel.js";
 
 const product = async (req, res) => {
@@ -9,7 +12,7 @@ const product = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Produsul nu a fost găsit' });
     }
     
-    // Asigură-te că opțiunile sunt incluse în răspuns
+    // Asigura-te ca optiunile sunt incluse in raspuns
     const response = {
       ...product.toObject(),
       success: true
@@ -22,4 +25,21 @@ const product = async (req, res) => {
   }
 }
 
-export {product}
+// Ia toate produsele care au un anumit ingredient sau criteriu
+const getProductsByCriteria = async (req, res) => {
+    try {
+        // Exemplu: cauta produse dupa categorie
+        const { category } = req.query;
+        let query = {};
+        if (category) {
+            query.category = category;
+        }
+        const products = await foodModel.find(query);
+        res.json({ success: true, data: products });
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: "Eroare la cautare produse" });
+    }
+};
+
+export {product, getProductsByCriteria};

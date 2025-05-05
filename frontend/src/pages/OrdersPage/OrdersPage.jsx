@@ -49,7 +49,7 @@ const OrdersPage = () => {
       });
 
       if (response.data.success) {
-        setOrders(response.data.orders);
+        setOrders(response.data.data);
       } else {
         showNotification('Nu s-au putut încărca comenzile tale!', 'error');
       }

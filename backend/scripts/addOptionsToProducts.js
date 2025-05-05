@@ -3,10 +3,8 @@ import foodModel from '../models/foodModel.js';
 import 'dotenv/config';
 import { connectDB } from '../config/db.js';
 
-// Date de test pentru opțiunile produselor
-const productOptionsData = {
-  // Exemple pentru diferite categorii de produse
-  
+// Date pentru optiunile produselor
+const productOptionsData = {  
   // Salate
   "salad_options": [
     {
@@ -117,7 +115,7 @@ const productOptionsData = {
   ]
 };
 
-// Mapare între categorii și opțiunile disponibile
+// Mapare intre categorii si optiunile disponibile
 const categoryMap = {
   'salads': 'salad_options',
   'salata': 'salad_options',
@@ -135,28 +133,28 @@ async function addOptionsToProducts() {
     console.log('Conectare la baza de date...');
     await connectDB();
     
-    // Obține toate produsele
+    // Obtine toate produsele
     const products = await foodModel.find({});
-    console.log(`S-au găsit ${products.length} produse în baza de date.`);
+    console.log(`S-au gasit ${products.length} produse in baza de date.`);
     
     let updatedCount = 0;
     
-    // Iterează prin produse și adaugă opțiuni
+    // Itereaza prin produse si adauga optiuni
     for (const product of products) {
-      // Verifică dacă produsul are deja opțiuni
+      // Verifica daca produsul are deja optiuni
       if (product.options && product.options.length > 0) {
-        console.log(`Produsul ${product.name} are deja opțiuni. Se sare peste.`);
+        console.log(`Produsul ${product.name} are deja optiuni. Se sare peste.`);
         continue;
       }
       
-      // Verifică dacă există opțiuni pentru categoria produsului
+      // Verifica daca exista optiuni pentru categoria produsului
       const categoryKey = product.category.toLowerCase();
       let options = null;
       
       if (categoryMap[categoryKey] && productOptionsData[categoryMap[categoryKey]]) {
         options = productOptionsData[categoryMap[categoryKey]];
       } else {
-        // Caută o potrivire parțială în categorii
+        // Cauta o potrivire partiala in categorii
         for (const key in categoryMap) {
           if (categoryKey.includes(key) || key.includes(categoryKey)) {
             options = productOptionsData[categoryMap[key]];
@@ -166,12 +164,12 @@ async function addOptionsToProducts() {
       }
       
       if (options) {
-        // Actualizează produsul cu opțiunile găsite
+        // Actualizeaza produsul cu optiunile gasite
         await foodModel.findByIdAndUpdate(product._id, { options });
-        console.log(`Opțiuni adăugate pentru produsul ${product.name} (categoria ${product.category}).`);
+        console.log(`Optiuni adaugate pentru produsul ${product.name} (categoria ${product.category}).`);
         updatedCount++;
       } else {
-        console.log(`Nu s-au găsit opțiuni pentru produsul ${product.name} (categoria ${product.category}).`);
+        console.log(`Nu s-au gasit optiuni pentru produsul ${product.name} (categoria ${product.category}).`);
       }
     }
     
@@ -179,11 +177,10 @@ async function addOptionsToProducts() {
   } catch (error) {
     console.error('Eroare:', error);
   } finally {
-    // Închide conexiunea la baza de date
+    // Inchidem conexiunea la baza de date
     await mongoose.connection.close();
-    console.log('Conexiune la baza de date închisă.');
+    console.log('Conexiune la baza de date inchisa.');
   }
 }
 
-// Rulează scriptul
 addOptionsToProducts(); 

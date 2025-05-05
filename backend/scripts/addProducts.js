@@ -6,15 +6,15 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Obține calea curentă
+// Obtinem calea curenta
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Produsele care vor fi adăugate
+// Produsele care vor fi adaugate
 const productsToAdd = [
   {
     name: "Salata de Cazarmă",
-    description: "Salată proaspătă inspirată din meniurile cazone, dar cu gust și aspect îmbunătățit considerabil.",
+    description: "Salata proaspata inspirata din meniurile cazone, dar cu gust si aspect imbunatatit considerabil.",
     price: 25,
     category: "Gamelă Verde",
     imageName: "food_1.png"
@@ -285,7 +285,7 @@ async function copyImagesToUploads() {
   }
 }
 
-// Adaugă produsele în baza de date
+// Adauga produsele in baza de date
 async function addProducts() {
   try {
     // Conectare la baza de date
@@ -295,19 +295,19 @@ async function addProducts() {
     // Copiază imaginile
     await copyImagesToUploads();
     
-    console.log('Adăugare produse în baza de date...');
+    console.log('Adaugare produse in baza de date...');
     
     let addedCount = 0;
     
-    // Adaugă fiecare produs
+    // Adauga fiecare produs
     for (const productData of productsToAdd) {
-      // Verifică dacă produsul există deja (după nume)
+      // Verific daca produsul exista deja (dupa nume)
       const existingProduct = await foodModel.findOne({ name: productData.name });
       
       if (existingProduct) {
-        console.log(`Produsul "${productData.name}" există deja. Se actualizează.`);
+        console.log(`Produsul "${productData.name}" exista deja. Se actualizeaza.`);
         
-        // Actualizează produsul existent
+        // Actualizeaza produsul existent
         await foodModel.findByIdAndUpdate(existingProduct._id, {
           description: productData.description,
           price: productData.price,
@@ -315,7 +315,7 @@ async function addProducts() {
           image: productData.imageName
         });
       } else {
-        // Creează un nou produs
+        // Creeaza un nou produs
         const newProduct = new foodModel({
           name: productData.name,
           description: productData.description,
@@ -334,11 +334,10 @@ async function addProducts() {
   } catch (error) {
     console.error('Eroare:', error);
   } finally {
-    // Închide conexiunea la baza de date
+      // Închidem conexiunea la baza de date
     await mongoose.connection.close();
     console.log('Conexiune la baza de date închisă.');
   }
 }
 
-// Rulează scriptul
 addProducts(); 

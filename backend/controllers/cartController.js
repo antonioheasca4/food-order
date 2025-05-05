@@ -1,20 +1,20 @@
+// Controller pentru cosul de cumparaturi
+
 import userModel from "../models/userModel.js"
 
-// add items to user's cart
+// Adauga item in cosul userului
 const addToCart = async (req,res) => {
     try {
         let userData = await userModel.findById(req.body.userId)
         let cartData = await userData.cartData;
         let optionsData = await userData.optionsData || {};
         
-        // Generăm un ID unic pentru item-ul din coș dacă are opțiuni
+        //facem un id unic pentru itemul din cos
         let cartItemKey = req.body.itemId;
         
-        // Verificăm dacă există opțiuni pentru acest produs
+        // salvam optiunile produsului
         if (req.body.options && Object.keys(req.body.options).length > 0) {
             cartItemKey = `${req.body.itemId}_${JSON.stringify(req.body.options)}`;
-            
-            // Salvăm opțiunile în baza de date
             optionsData[cartItemKey] = req.body.options;
         }
         
@@ -31,14 +31,14 @@ const addToCart = async (req,res) => {
             optionsData
         });
         
-        res.json({succes:true,message:"Adăugat în coș!"});
+        res.json({succes:true,message:"Adaugat in cos!"});
     } catch (error) {
         console.log(error);
         res.json({succes:false,message:"Error addToCart"});
     }
 }
 
-// remove items from user's cart
+// Scoate item din cosul userului
 const removeFromCart = async (req,res) => {
     try {
         let userData = await userModel.findById(req.body.userId)
@@ -46,10 +46,9 @@ const removeFromCart = async (req,res) => {
         let optionsData = await userData.optionsData || {};
         let itemRemoved = false;
         
-        // Generăm ID-ul unic pentru item-ul din coș
+        // Daca ai optiuni la produs, facem un id unic pentru itemul din cos
         let cartItemKey = req.body.itemId;
         
-        // Verificăm dacă există opțiuni pentru acest produs
         if (req.body.options && Object.keys(req.body.options).length > 0) {
             cartItemKey = `${req.body.itemId}_${JSON.stringify(req.body.options)}`;
         }
@@ -60,12 +59,10 @@ const removeFromCart = async (req,res) => {
             
             if(cartData[cartItemKey] === 0) {
                 delete cartData[cartItemKey];
-                
-                // Eliminăm și opțiunile asociate dacă există
+                // Daca ai optiuni, le stergem si pe ele
                 if (optionsData[cartItemKey]) {
                     delete optionsData[cartItemKey];
                 }
-                
                 itemRemoved = true;
             }
 
@@ -86,19 +83,16 @@ const removeFromCart = async (req,res) => {
     }
 }
 
-// fetch user's cart data
+// Ia tot cosul userului
 const getCart = async (req,res) => {
     try {
         let userData = await userModel.findById(req.body.userId);
-        
-        // Verifică dacă userData există
+        // Daca nu gasim userul, returnam eroare
         if (!userData) {
-            return res.status(404).json({success:false, message:"Utilizatorul nu a fost găsit"});
+            return res.status(404).json({success:false, message:"Userul nu a fost gasit"});
         }
-        
         let cartData = await userData.cartData;
         let optionsData = await userData.optionsData || {};
-        
         res.json({
             succes:true,
             cartData,
@@ -110,15 +104,14 @@ const getCart = async (req,res) => {
     }
 }
 
-// clear all items from user's cart
+// Goleste tot cosul userului
 const clearCart = async (req,res) => {
     try {
         await userModel.findByIdAndUpdate(req.body.userId, {
             cartData: {},
             optionsData: {}
         });
-        
-        res.json({succes:true, message:"Coșul a fost golit cu succes!"});
+        res.json({succes:true, message:"Cosul a fost golit!"});
     } catch (error) {
         console.log(error);
         res.json({succes:false, message:"Error clearCart"});

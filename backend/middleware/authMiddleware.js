@@ -1,10 +1,12 @@
+// Middleware de verificare token, ca sa nu intre cineva neautorizat
+
 import jwt from "jsonwebtoken";
 
 export const verifyToken = async (req, res, next) => {
-    // Extrag token-ul din header - suport pentru ambele formate
+    // Scoatem token-ul din header, merge si cu auth-token si cu token simplu
     let token = req.headers['auth-token'] || req.headers.token;
     
-    // Verifică dacă token-ul este trimis în format Authorization: Bearer {token}
+    // Daca e trimis ca Bearer, il luam de acolo
     const authHeader = req.headers.authorization;
     if (!token && authHeader && authHeader.startsWith('Bearer ')) {
         token = authHeader.split(' ')[1];
@@ -13,14 +15,14 @@ export const verifyToken = async (req, res, next) => {
     if (!token) {
         return res.status(401).json({
             success: false,
-            message: "Nu ești autorizat! Loghează-te!"
+            message: "Nu esti autorizat! Logheaza-te!"
         });
     }
     
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         
-        // Adaugă informațiile utilizatorului la obiectul req
+        // Bagam info despre user in req, ca sa stim cine e
         req.user = {
             id: decoded.id,
             isAdmin: decoded.isAdmin || false

@@ -64,12 +64,9 @@ const LoginPopup = ({setShowLogin}) => {
            const isAdmin = await checkIfAdmin(token);
            
            if (isAdmin) {
-             // Dacă este admin, redirecționează direct către panoul admin
-             // Nu setăm token-ul și nu actualizăm starea aplicației principale
-             setShowLogin(false);
-             
-             // Redirecționare completă către pagina de admin
-             window.location.href = "http://localhost:5174";
+             // Dacă este admin, afișăm un mesaj de eroare și nu permitem autentificarea
+             alert("Conturile de administrator nu pot fi utilizate în interfața utilizatorului normal. Vă rugăm să utilizați panoul de administrare.");
+             return;
            } else {
              // Dacă nu este admin, continuă procesul normal
              setToken(token);
